@@ -2,7 +2,5 @@ package com.tovar.colorum.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val scarpaFlow = Color(0xFF515058)
+val charade = Color(0xFF272834)
