@@ -35,8 +35,9 @@ dependencyResolutionManagement {
             alias("toolingPreview").to("androidx.compose.ui", "ui-tooling-preview").versionRef("compose")
             alias("uiTest").to("androidx.compose.ui", "ui-test-junit4").versionRef("compose")
             alias("uiTooling").to("androidx.compose.ui", "ui-tooling").versionRef("compose")
+            alias("materialIcons").to("androidx.compose.material","material-icons-extended").versionRef("compose")
 
-            bundle("core", ["ui", "material", "toolingPreview"])
+            bundle("core", ["ui", "material", "materialIcons", "toolingPreview"])
         }
 
         create("androidXLifecycle") {
