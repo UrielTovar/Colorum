@@ -1,4 +1,4 @@
-package com.tovar.colorum
+package com.tovar.colorum.presentation.overview
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,9 +7,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.tovar.colorum.ui.theme.ColorumTheme
+import com.tovar.colorum.presentation.ui.theme.ColorumTheme
 
-class MainActivity : ComponentActivity() {
+class OverviewActivity : ComponentActivity() {
+	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContent {
@@ -20,6 +21,7 @@ class MainActivity : ComponentActivity() {
 			}
 		}
 	}
+	
 }
 
 @Preview(showBackground = true)

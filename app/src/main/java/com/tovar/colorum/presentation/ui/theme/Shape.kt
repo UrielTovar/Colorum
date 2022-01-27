@@ -1,4 +1,4 @@
-package com.tovar.colorum.ui.theme
+package com.tovar.colorum.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
