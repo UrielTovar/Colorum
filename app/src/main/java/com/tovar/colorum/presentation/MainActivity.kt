@@ -1,4 +1,4 @@
-package com.tovar.colorum.presentation.overview
+package com.tovar.colorum.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,19 +9,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.tovar.colorum.presentation.base.components.BackgroundGradient
+import com.tovar.colorum.presentation.overview.OverviewScreen
+import com.tovar.colorum.presentation.overview.OverviewViewModel
 import com.tovar.colorum.presentation.ui.theme.ColorumTheme
 
-class OverviewActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContent {
 			ColorumTheme {
 				Surface(color = MaterialTheme.colors.background) {
-					// TODO: Use secondary color value stored in datastore
-					BackgroundGradient(secondaryColor = Color.Blue) {
-					
-					}
+					// TODO: Inject viewModel using dagger hilt 
+					OverviewScreen(viewModel = OverviewViewModel())
 				}
 			}
 		}
@@ -34,9 +34,7 @@ class OverviewActivity : ComponentActivity() {
 fun DefaultPreview() {
 	ColorumTheme {
 		Surface(color = MaterialTheme.colors.background) {
-			BackgroundGradient(secondaryColor = Color.Blue) {
-				
-			}
+			OverviewScreen(viewModel = OverviewViewModel())
 		}
 	}
 }
