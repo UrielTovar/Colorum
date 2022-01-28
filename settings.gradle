@@ -26,6 +26,9 @@ dependencyResolutionManagement {
 
             version("activityCompose", "1.4.0")
             alias("activityCompose").to("androidx.activity", "activity-compose").versionRef("activityCompose")
+
+            version("preferences","1.0.0")
+            alias("datastorePreferences").to("androidx.datastore", "datastore-preferences").versionRef("preferences")
         }
 
         create("androidXCompose") {
