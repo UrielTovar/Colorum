@@ -6,6 +6,7 @@ buildscript {
     dependencies {
         classpath(androidTools.buildGradle)
         classpath(jetBrains.kotlinGradlePlugin)
+        classpath(daggerHilt.gradle)
     }
 }
 

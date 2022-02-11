@@ -1,6 +1,8 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -42,7 +44,6 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion androidXCompose.versions.compose.get()
-        kotlinCompilerVersion jetBrains.versions.kotlin.get()
     }
 
     packagingOptions {
@@ -57,18 +58,28 @@ dependencies {
     implementation(androidX.core)
     implementation(androidX.appCompat)
     implementation(androidX.activityCompose)
+    implementation(androidX.datastorePreferences)
+    implementation(androidXNavigation.compose)
 
     /** Compose */
     implementation(androidXCompose.bundles.core)
 
     /** Lifecycle */
     implementation(androidXLifecycle.runtime)
+    implementation(androidXLifecycle.viewmodel)
+
+    /** Hilt */
+    implementation(daggerHilt.bundles.core)
+    kapt(daggerHilt.compiler)
 
     /** Google */
     implementation(google.material)
 
     /** Square */
     implementation(square.logcat)
+
+    /** Modules */
+    implementation(project(":datastore"))
 
     /** Junit */
     testImplementation(jUnit.junit)

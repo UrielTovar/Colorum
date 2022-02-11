@@ -1,5 +1,6 @@
 rootProject.name = "Colorum"
 include ':app'
+include ":datastore"
 enableFeaturePreview("VERSION_CATALOGS")
 
 dependencyResolutionManagement {
@@ -46,6 +47,12 @@ dependencyResolutionManagement {
         create("androidXLifecycle") {
             version("lifecycle", "2.4.0")
             alias("runtime").to("androidx.lifecycle", "lifecycle-runtime-ktx").versionRef("lifecycle")
+            alias("viewmodel").to("androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycle")
+        }
+
+        create("androidXNavigation") {
+            version("navigation", "2.4.0")
+            alias("compose").to("androidx.navigation", "navigation-compose").versionRef("navigation")
         }
 
         create("androidXTesting") {
@@ -61,6 +68,24 @@ dependencyResolutionManagement {
         create("google") {
             version("material", "1.4.0")
             alias("material").to("com.google.android.material", "material").versionRef("material")
+        }
+
+        create("coroutines") {
+            version("coroutines","1.6.0")
+            alias("core").to("org.jetbrains.kotlinx", "kotlinx-coroutines-core").versionRef("coroutines")
+        }
+
+        create("daggerHilt") {
+            version("hilt", "2.40")
+            alias("android").to("com.google.dagger", "hilt-android").versionRef("hilt")
+            alias("compiler").to("com.google.dagger", "hilt-compiler").versionRef("hilt")
+            alias("gradle").to("com.google.dagger","hilt-android-gradle-plugin").versionRef("hilt")
+            alias("core").to("com.google.dagger","hilt-core").versionRef("hilt")
+
+            version("navigation","1.0.0")
+            alias("navigation").to("androidx.hilt", "hilt-navigation-compose").versionRef("navigation")
+
+            bundle("core", ["android", "navigation"])
         }
 
         create("jUnit") {
