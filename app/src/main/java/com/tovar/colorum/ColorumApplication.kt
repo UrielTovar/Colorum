@@ -1,5 +1,16 @@
 package com.tovar.colorum
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+import logcat.AndroidLogcatLogger
+import logcat.LogPriority
 
-class ColorumApplication : Application()
+@HiltAndroidApp
+class ColorumApplication : Application() {
+	
+	override fun onCreate() {
+		super.onCreate()
+		AndroidLogcatLogger.installOnDebuggableApp(this, minPriority = LogPriority.VERBOSE)
+	}
+
+}
