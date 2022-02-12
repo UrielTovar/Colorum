@@ -33,7 +33,7 @@ dependencyResolutionManagement {
         }
 
         create("androidXCompose") {
-            version("compose", "1.0.5")
+            version("compose", "1.1.0")
             alias("ui").to("androidx.compose.ui", "ui").versionRef("compose")
             alias("material").to("androidx.compose.material", "material").versionRef("compose")
             alias("toolingPreview").to("androidx.compose.ui", "ui-tooling-preview").versionRef("compose")
@@ -94,7 +94,7 @@ dependencyResolutionManagement {
         }
 
         create("jetBrains") {
-            version("kotlin", "1.5.31")
+            version("kotlin", "1.6.10")
             alias("kotlinGradlePlugin").to("org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
         }
 
