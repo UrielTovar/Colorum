@@ -4,18 +4,24 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.tovar.colorum.R
 import com.tovar.colorum.presentation.base.components.BackgroundGradient
 
 @Composable
 fun OverviewScreen(
-	viewModel: OverviewViewModel
+	viewModel: OverviewViewModel = hiltViewModel()
 ) {
-	// TODO: Use secondary color value stored in datastore
-	BackgroundGradient(secondaryColor = Color.Blue) {
+	val backgroundColor = viewModel.backgroundColor.collectAsState()
+	
+	BackgroundGradient(
+		secondaryColor = Color(backgroundColor.value)
+	) {
 		Scaffold(
 			topBar = {
 				TopAppBar(
@@ -28,7 +34,7 @@ fun OverviewScreen(
 					backgroundColor = Color.Transparent,
 					elevation = 0.dp,
 					actions = {
-						IconButton(onClick = { /* TODO: Send to palette screen */ }) {
+						IconButton(onClick = { viewModel.getPreference(longPreferencesKey("background_color"),4292446245 )}) {
 							Icon(
 								imageVector = Icons.Outlined.Palette,
 								tint = Color.White,

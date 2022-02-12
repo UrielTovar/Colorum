@@ -1,5 +1,6 @@
 rootProject.name = "Colorum"
 include ':app'
+include ":datastore"
 enableFeaturePreview("VERSION_CATALOGS")
 
 dependencyResolutionManagement {
@@ -26,10 +27,13 @@ dependencyResolutionManagement {
 
             version("activityCompose", "1.4.0")
             alias("activityCompose").to("androidx.activity", "activity-compose").versionRef("activityCompose")
+
+            version("preferences","1.0.0")
+            alias("datastorePreferences").to("androidx.datastore", "datastore-preferences").versionRef("preferences")
         }
 
         create("androidXCompose") {
-            version("compose", "1.0.5")
+            version("compose", "1.1.0")
             alias("ui").to("androidx.compose.ui", "ui").versionRef("compose")
             alias("material").to("androidx.compose.material", "material").versionRef("compose")
             alias("toolingPreview").to("androidx.compose.ui", "ui-tooling-preview").versionRef("compose")
@@ -43,6 +47,12 @@ dependencyResolutionManagement {
         create("androidXLifecycle") {
             version("lifecycle", "2.4.0")
             alias("runtime").to("androidx.lifecycle", "lifecycle-runtime-ktx").versionRef("lifecycle")
+            alias("viewmodel").to("androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycle")
+        }
+
+        create("androidXNavigation") {
+            version("navigation", "2.4.0")
+            alias("compose").to("androidx.navigation", "navigation-compose").versionRef("navigation")
         }
 
         create("androidXTesting") {
@@ -60,13 +70,31 @@ dependencyResolutionManagement {
             alias("material").to("com.google.android.material", "material").versionRef("material")
         }
 
+        create("coroutines") {
+            version("coroutines","1.6.0")
+            alias("core").to("org.jetbrains.kotlinx", "kotlinx-coroutines-core").versionRef("coroutines")
+        }
+
+        create("daggerHilt") {
+            version("hilt", "2.40")
+            alias("android").to("com.google.dagger", "hilt-android").versionRef("hilt")
+            alias("compiler").to("com.google.dagger", "hilt-compiler").versionRef("hilt")
+            alias("gradle").to("com.google.dagger","hilt-android-gradle-plugin").versionRef("hilt")
+            alias("core").to("com.google.dagger","hilt-core").versionRef("hilt")
+
+            version("navigation","1.0.0")
+            alias("navigation").to("androidx.hilt", "hilt-navigation-compose").versionRef("navigation")
+
+            bundle("core", ["android", "navigation"])
+        }
+
         create("jUnit") {
             version("junit", "4.13.2")
             alias("junit").to("junit", "junit").versionRef("junit")
         }
 
         create("jetBrains") {
-            version("kotlin", "1.5.31")
+            version("kotlin", "1.6.10")
             alias("kotlinGradlePlugin").to("org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
         }
 

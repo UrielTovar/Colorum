@@ -3,6 +3,7 @@ package com.tovar.colorum.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -12,7 +13,9 @@ import com.tovar.colorum.presentation.base.components.BackgroundGradient
 import com.tovar.colorum.presentation.overview.OverviewScreen
 import com.tovar.colorum.presentation.overview.OverviewViewModel
 import com.tovar.colorum.presentation.ui.theme.ColorumTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +23,7 @@ class MainActivity : ComponentActivity() {
 		setContent {
 			ColorumTheme {
 				Surface(color = MaterialTheme.colors.background) {
-					// TODO: Inject viewModel using dagger hilt 
-					OverviewScreen(viewModel = OverviewViewModel())
+					OverviewScreen()
 				}
 			}
 		}
@@ -34,7 +36,7 @@ class MainActivity : ComponentActivity() {
 fun DefaultPreview() {
 	ColorumTheme {
 		Surface(color = MaterialTheme.colors.background) {
-			OverviewScreen(viewModel = OverviewViewModel())
+			OverviewScreen()
 		}
 	}
 }
