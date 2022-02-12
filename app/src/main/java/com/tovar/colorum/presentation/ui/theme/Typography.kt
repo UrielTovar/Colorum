@@ -8,23 +8,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.tovar.colorum.R
 
-val fonts = FontFamily(
-	Font(resId = R.font.avenir_regular, weight = FontWeight.Normal),
-	Font(resId = R.font.avenir_medium, weight = FontWeight.Medium),
-	Font(resId = R.font.avenir_bold, weight = FontWeight.SemiBold)
-)
+private val regular = Font(R.font.avenir_regular, FontWeight.Normal)
+private val medium = Font(R.font.avenir_medium, FontWeight.Medium)
+private val semibold = Font(R.font.avenir_bold, FontWeight.SemiBold)
 
-val Typography = Typography(
+val colorumFontFamily = FontFamily(regular, medium, semibold)
+
+val colorumTypography = Typography(
 	body1 = TextStyle(
-		fontFamily = fonts,
+		fontFamily = colorumFontFamily,
 		fontSize = 14.sp
 	),
 	subtitle1 = TextStyle(
-		fontFamily = fonts,
+		fontFamily = colorumFontFamily,
 		fontWeight = FontWeight.Medium
 	),
 	h6 = TextStyle(
-		fontFamily = fonts,
+		fontFamily = colorumFontFamily,
 		fontWeight = FontWeight.SemiBold,
 		fontSize = 16.sp
 	)
