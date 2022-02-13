@@ -28,7 +28,7 @@ dependencyResolutionManagement {
             version("activityCompose", "1.4.0")
             alias("activityCompose").to("androidx.activity", "activity-compose").versionRef("activityCompose")
 
-            version("preferences","1.0.0")
+            version("preferences", "1.0.0")
             alias("datastorePreferences").to("androidx.datastore", "datastore-preferences").versionRef("preferences")
         }
 
@@ -39,7 +39,7 @@ dependencyResolutionManagement {
             alias("toolingPreview").to("androidx.compose.ui", "ui-tooling-preview").versionRef("compose")
             alias("uiTest").to("androidx.compose.ui", "ui-test-junit4").versionRef("compose")
             alias("uiTooling").to("androidx.compose.ui", "ui-tooling").versionRef("compose")
-            alias("materialIcons").to("androidx.compose.material","material-icons-extended").versionRef("compose")
+            alias("materialIcons").to("androidx.compose.material", "material-icons-extended").versionRef("compose")
 
             bundle("core", ["ui", "material", "materialIcons", "toolingPreview"])
         }
@@ -68,10 +68,16 @@ dependencyResolutionManagement {
         create("google") {
             version("material", "1.4.0")
             alias("material").to("com.google.android.material", "material").versionRef("material")
+
+            version("services", "4.3.10")
+            alias("services").to("com.google.gms", "google-services").versionRef("services")
+
+            version("firebaseBom", "29.1.0")
+            alias("firebaseBom").to("com.google.firebase", "firebase-bom").versionRef("firebaseBom")
         }
 
         create("coroutines") {
-            version("coroutines","1.6.0")
+            version("coroutines", "1.6.0")
             alias("core").to("org.jetbrains.kotlinx", "kotlinx-coroutines-core").versionRef("coroutines")
         }
 
@@ -79,10 +85,10 @@ dependencyResolutionManagement {
             version("hilt", "2.40")
             alias("android").to("com.google.dagger", "hilt-android").versionRef("hilt")
             alias("compiler").to("com.google.dagger", "hilt-compiler").versionRef("hilt")
-            alias("gradle").to("com.google.dagger","hilt-android-gradle-plugin").versionRef("hilt")
-            alias("core").to("com.google.dagger","hilt-core").versionRef("hilt")
+            alias("gradle").to("com.google.dagger", "hilt-android-gradle-plugin").versionRef("hilt")
+            alias("core").to("com.google.dagger", "hilt-core").versionRef("hilt")
 
-            version("navigation","1.0.0")
+            version("navigation", "1.0.0")
             alias("navigation").to("androidx.hilt", "hilt-navigation-compose").versionRef("navigation")
 
             bundle("core", ["android", "navigation"])
