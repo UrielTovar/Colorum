@@ -34,6 +34,7 @@ dependencies {
 
     /** Jetbrains */
     implementation(coroutines.core)
+    implementation(coroutines.playServices)
 
     /** Testing */
     testImplementation(jUnit.junit)
