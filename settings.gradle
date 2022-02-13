@@ -1,5 +1,6 @@
 rootProject.name = "Colorum"
-include ':app'
+include ":app"
+include ":colors"
 include ":datastore"
 enableFeaturePreview("VERSION_CATALOGS")
 
@@ -65,17 +66,6 @@ dependencyResolutionManagement {
             bundle("core", ["jUnit", "espresso"])
         }
 
-        create("google") {
-            version("material", "1.4.0")
-            alias("material").to("com.google.android.material", "material").versionRef("material")
-
-            version("services", "4.3.10")
-            alias("services").to("com.google.gms", "google-services").versionRef("services")
-
-            version("firebaseBom", "29.1.0")
-            alias("firebaseBom").to("com.google.firebase", "firebase-bom").versionRef("firebaseBom")
-        }
-
         create("coroutines") {
             version("coroutines", "1.6.0")
             alias("core").to("org.jetbrains.kotlinx", "kotlinx-coroutines-core").versionRef("coroutines")
@@ -94,14 +84,27 @@ dependencyResolutionManagement {
             bundle("core", ["android", "navigation"])
         }
 
-        create("jUnit") {
-            version("junit", "4.13.2")
-            alias("junit").to("junit", "junit").versionRef("junit")
+        create("firebase") {
+            version("firestore", "24.0.0")
+            alias("firestore").to("com.google.firebase", "firebase-firestore-ktx").versionRef("firestore")
+        }
+
+        create("google") {
+            version("material", "1.4.0")
+            alias("material").to("com.google.android.material", "material").versionRef("material")
+
+            version("services", "4.3.10")
+            alias("services").to("com.google.gms", "google-services").versionRef("services")
         }
 
         create("jetBrains") {
             version("kotlin", "1.6.10")
             alias("kotlinGradlePlugin").to("org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
+        }
+
+        create("jUnit") {
+            version("junit", "4.13.2")
+            alias("junit").to("junit", "junit").versionRef("junit")
         }
 
         create("square") {
@@ -112,4 +115,3 @@ dependencyResolutionManagement {
     }
 
 }
-include ':colors'
