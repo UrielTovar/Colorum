@@ -1,5 +1,6 @@
 rootProject.name = "Colorum"
-include ':app'
+include ":app"
+include ":colors"
 include ":datastore"
 enableFeaturePreview("VERSION_CATALOGS")
 
@@ -28,7 +29,7 @@ dependencyResolutionManagement {
             version("activityCompose", "1.4.0")
             alias("activityCompose").to("androidx.activity", "activity-compose").versionRef("activityCompose")
 
-            version("preferences","1.0.0")
+            version("preferences", "1.0.0")
             alias("datastorePreferences").to("androidx.datastore", "datastore-preferences").versionRef("preferences")
         }
 
@@ -39,7 +40,7 @@ dependencyResolutionManagement {
             alias("toolingPreview").to("androidx.compose.ui", "ui-tooling-preview").versionRef("compose")
             alias("uiTest").to("androidx.compose.ui", "ui-test-junit4").versionRef("compose")
             alias("uiTooling").to("androidx.compose.ui", "ui-tooling").versionRef("compose")
-            alias("materialIcons").to("androidx.compose.material","material-icons-extended").versionRef("compose")
+            alias("materialIcons").to("androidx.compose.material", "material-icons-extended").versionRef("compose")
 
             bundle("core", ["ui", "material", "materialIcons", "toolingPreview"])
         }
@@ -65,37 +66,48 @@ dependencyResolutionManagement {
             bundle("core", ["jUnit", "espresso"])
         }
 
-        create("google") {
-            version("material", "1.4.0")
-            alias("material").to("com.google.android.material", "material").versionRef("material")
-        }
-
         create("coroutines") {
-            version("coroutines","1.6.0")
+            version("coroutines", "1.6.0")
             alias("core").to("org.jetbrains.kotlinx", "kotlinx-coroutines-core").versionRef("coroutines")
+
+            version("playServices","1.5.0 ")
+            alias("playServices").to("org.jetbrains.kotlinx", "kotlinx-coroutines-play-services").versionRef("playServices")
         }
 
         create("daggerHilt") {
             version("hilt", "2.40")
             alias("android").to("com.google.dagger", "hilt-android").versionRef("hilt")
             alias("compiler").to("com.google.dagger", "hilt-compiler").versionRef("hilt")
-            alias("gradle").to("com.google.dagger","hilt-android-gradle-plugin").versionRef("hilt")
-            alias("core").to("com.google.dagger","hilt-core").versionRef("hilt")
+            alias("gradle").to("com.google.dagger", "hilt-android-gradle-plugin").versionRef("hilt")
+            alias("core").to("com.google.dagger", "hilt-core").versionRef("hilt")
 
-            version("navigation","1.0.0")
+            version("navigation", "1.0.0")
             alias("navigation").to("androidx.hilt", "hilt-navigation-compose").versionRef("navigation")
 
             bundle("core", ["android", "navigation"])
         }
 
-        create("jUnit") {
-            version("junit", "4.13.2")
-            alias("junit").to("junit", "junit").versionRef("junit")
+        create("firebase") {
+            version("firestore", "24.0.0")
+            alias("firestore").to("com.google.firebase", "firebase-firestore-ktx").versionRef("firestore")
+        }
+
+        create("google") {
+            version("material", "1.4.0")
+            alias("material").to("com.google.android.material", "material").versionRef("material")
+
+            version("services", "4.3.10")
+            alias("services").to("com.google.gms", "google-services").versionRef("services")
         }
 
         create("jetBrains") {
             version("kotlin", "1.6.10")
             alias("kotlinGradlePlugin").to("org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
+        }
+
+        create("jUnit") {
+            version("junit", "4.13.2")
+            alias("junit").to("junit", "junit").versionRef("junit")
         }
 
         create("square") {

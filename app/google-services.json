@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1016183225301",
+    "project_id": "colorum-6a519",
+    "storage_bucket": "colorum-6a519.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016183225301:android:fa53d9da1bb38ec1735b5c",
+        "android_client_info": {
+          "package_name": "com.colorum.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016183225301-lfho4tb73aqebvsjemn883nnbrnsrb9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7gEWLE53CzMW3A78O1t6UgQdPlempu34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1016183225301-lfho4tb73aqebvsjemn883nnbrnsrb9j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
