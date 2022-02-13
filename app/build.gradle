@@ -75,6 +75,7 @@ dependencies {
 
     /** Google */
     implementation(google.material)
+    implementation(firebase.firestore)
 
     /** Square */
     implementation(square.logcat)
