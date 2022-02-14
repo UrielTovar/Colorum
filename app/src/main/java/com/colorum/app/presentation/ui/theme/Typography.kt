@@ -26,6 +26,6 @@ val colorumTypography = Typography(
 	h6 = TextStyle(
 		fontFamily = colorumFontFamily,
 		fontWeight = FontWeight.SemiBold,
-		fontSize = 16.sp
+		fontSize = 37.sp
 	)
 )

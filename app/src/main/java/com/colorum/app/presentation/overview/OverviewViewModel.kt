@@ -1,6 +1,7 @@
 package com.colorum.app.presentation.overview
 
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.colorum.app.datastore.domain.useCase.getPreference.GetPreferenceUseCase
@@ -20,15 +21,20 @@ class OverviewViewModel @Inject constructor(
 	private val _backgroundColor = MutableStateFlow(4280655577)
 	val backgroundColor: StateFlow<Long> get() = _backgroundColor
 	
-	fun <T> getPreference(key: Preferences.Key<T>, defaultValue: T) = viewModelScope.launch {
-		getPreferenceUseCase.invoke(key, defaultValue)
-			.catch {
-				logcat { "GetPreference 😭 : $it" }
-			}
-			.collect {
-				_backgroundColor.value = it as Long
-				logcat { "GetPreference 😁 : $it" }
-			}
+	init {
+		getPreference(longPreferencesKey(name = "background_color"), 4280655577)
 	}
+	
+	private fun <T> getPreference(key: Preferences.Key<T>, defaultValue: T) =
+		viewModelScope.launch {
+			getPreferenceUseCase.invoke(key, defaultValue)
+				.catch {
+					logcat { "GetPreference 😭 : $it" }
+				}
+				.collect {
+					_backgroundColor.value = it as Long
+					logcat { "GetPreference 😁 : $it" }
+				}
+		}
 	
 }

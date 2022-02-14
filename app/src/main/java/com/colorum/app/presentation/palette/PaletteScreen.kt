@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -30,8 +29,7 @@ fun PaletteScreen(
 	viewModel: PaletteViewModel = hiltViewModel()
 ) {
 	val pigments by viewModel.pigments.collectAsState()
-	val isAdded by viewModel.isSuccessfulAdded.collectAsState()
- 	val error by viewModel.error.collectAsState()
+	val error by viewModel.error.collectAsState()
 	
 	Scaffold(
 		backgroundColor = charade
@@ -95,19 +93,5 @@ fun PigmentItem(
 				.align(Alignment.CenterVertically),
 			color = Color.White
 		)
-	}
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PaletteScreenPreview() {
-	PaletteScreen()
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ColorItemPreview() {
-	PigmentItem(pigment = Pigment("", "Blue", 4292446245)) {
-	
 	}
 }

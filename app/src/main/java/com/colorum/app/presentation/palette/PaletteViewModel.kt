@@ -6,13 +6,16 @@ import androidx.lifecycle.viewModelScope
 import com.colorum.app.datastore.domain.useCase.putPreference.PutPreferenceUseCase
 import com.colorum.app.pigments.domain.entity.Pigment
 import com.colorum.app.pigments.domain.useCase.fetchPigments.FetchPigmentsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import logcat.logcat
 import javax.inject.Inject
 
+@HiltViewModel
 class PaletteViewModel @Inject constructor(
 	private val fetchPigmentsUseCase: FetchPigmentsUseCase,
 	private val putPreferenceUseCase: PutPreferenceUseCase
@@ -20,9 +23,6 @@ class PaletteViewModel @Inject constructor(
 	
 	private val _pigments = MutableStateFlow<List<Pigment>>(emptyList())
 	val pigments: StateFlow<List<Pigment>> get() = _pigments
-	
-	private val _isSuccessfulAdded = MutableStateFlow(false)
-	val isSuccessfulAdded: StateFlow<Boolean> get() = _isSuccessfulAdded
 	
 	private val _error = MutableStateFlow<Throwable?>(null)
 	val error: StateFlow<Throwable?> get() = _error
@@ -44,9 +44,10 @@ class PaletteViewModel @Inject constructor(
 		putPreferenceUseCase.invoke(
 			key, value
 		).catch {
+			logcat { "😭" }
 			_error.value = it
 		}.collect {
-			_isSuccessfulAdded.value = true
+			logcat { "🐶" }
 		}
 	}
 	

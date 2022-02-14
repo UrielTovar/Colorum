@@ -5,9 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.colorum.app.presentation.overview.OverviewScreen
+import com.colorum.app.presentation.palette.PaletteScreen
 import com.colorum.app.presentation.ui.theme.ColorumTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,20 +21,19 @@ class MainActivity : ComponentActivity() {
 		setContent {
 			ColorumTheme {
 				Surface(color = MaterialTheme.colors.background) {
-					OverviewScreen()
+					val navigationController = rememberNavController()
+					
+					NavHost(navController = navigationController, startDestination = "overview") {
+						composable("overview") {
+							OverviewScreen(navigationController = navigationController)
+						}
+						composable(route = "palette") {
+							PaletteScreen()
+						}
+					}
 				}
 			}
 		}
 	}
 	
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-	ColorumTheme {
-		Surface(color = MaterialTheme.colors.background) {
-			OverviewScreen()
-		}
-	}
 }

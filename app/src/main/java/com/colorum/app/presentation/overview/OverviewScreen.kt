@@ -5,22 +5,25 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.colorum.app.R
 import com.colorum.app.presentation.base.components.BackgroundGradient
 
 @Composable
 fun OverviewScreen(
-	viewModel: OverviewViewModel = hiltViewModel()
+	viewModel: OverviewViewModel = hiltViewModel(),
+	navigationController: NavController
 ) {
-	val backgroundColor = viewModel.backgroundColor.collectAsState()
+	val backgroundColor by viewModel.backgroundColor.collectAsState()
 	
 	BackgroundGradient(
-		secondaryColor = Color(backgroundColor.value)
+		secondaryColor = Color(backgroundColor)
 	) {
 		Scaffold(
 			topBar = {
@@ -28,18 +31,18 @@ fun OverviewScreen(
 					title = {
 						Text(
 							text = stringResource(R.string.app_name),
-							style = MaterialTheme.typography.h6
+							style = MaterialTheme.typography.h6,
+							fontSize = 16.sp
 						)
 					},
 					backgroundColor = Color.Transparent,
 					elevation = 0.dp,
 					actions = {
-						IconButton(onClick = {
-							viewModel.getPreference(
-								longPreferencesKey("background_color"),
-								4292446245
-							)
-						}) {
+						IconButton(
+							onClick = {
+								navigationController.navigate(route = "palette")
+							}
+						) {
 							Icon(
 								imageVector = Icons.Outlined.Palette,
 								tint = Color.White,
