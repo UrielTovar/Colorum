@@ -19,19 +19,26 @@ android {
         }
     }
 
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
 dependencies {
-    /** AndroidX */
-    implementation(androidX.datastorePreferences)
+    /** Google */
+   implementation(firebase.firestore)
 
     /** Hilt */
     implementation(daggerHilt.core)
@@ -39,6 +46,7 @@ dependencies {
 
     /** Jetbrains */
     implementation(coroutines.core)
+    implementation(coroutines.playServices)
 
     /** Testing */
     testImplementation(jUnit.junit)
