@@ -10,6 +10,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -17,14 +19,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.colorum.app.R
 import com.colorum.app.pigments.domain.entity.Pigment
 import com.colorum.app.presentation.ui.theme.charade
 
 @Composable
 fun PaletteScreen(
-
+	viewModel: PaletteViewModel = hiltViewModel()
 ) {
+	val pigments by viewModel.pigments.collectAsState()
+	val isAdded by viewModel.isSuccessfulAdded.collectAsState()
+ 	val error by viewModel.error.collectAsState()
+	
 	Scaffold(
 		backgroundColor = charade
 	) {
@@ -35,11 +43,20 @@ fun PaletteScreen(
 				modifier = Modifier.padding(16.dp),
 				color = Color.White
 			)
-			LazyColumn(
-				modifier = Modifier.fillMaxWidth()
-			) {
-				items(listOf("Green", "Red", "Blue")) { _item ->
-				
+			error?.let {
+				// TODO: Add lottie animation for empty state or network ethernet
+			} ?: run {
+				LazyColumn(
+					modifier = Modifier.fillMaxWidth()
+				) {
+					items(pigments) { _item ->
+						PigmentItem(pigment = _item) {
+							viewModel.putPreference(
+								key = longPreferencesKey(name = "background_color"),
+								value = it.value
+							)
+						}
+					}
 				}
 			}
 		}
@@ -90,5 +107,7 @@ fun PaletteScreenPreview() {
 @Preview(showBackground = true)
 @Composable
 fun ColorItemPreview() {
-	PigmentItem(pigment = Pigment("", "Blue", 4292446245)) { }
+	PigmentItem(pigment = Pigment("", "Blue", 4292446245)) {
+	
+	}
 }
