@@ -1,4 +1,4 @@
-package com.colorum.app.datastore
+package com.colorum.app.pigments
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
 	fun useAppContext() {
 		// Context of the app under test.
 		val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-		assertEquals("com.colorum.app.datastore.test", appContext.packageName)
+		assertEquals("com.colorum.app.pigments.test", appContext.packageName)
 	}
 }
