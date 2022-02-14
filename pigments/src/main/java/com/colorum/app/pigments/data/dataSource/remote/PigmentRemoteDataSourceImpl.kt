@@ -33,8 +33,8 @@ internal class PigmentRemoteDataSourceImpl @Inject constructor(
 	private fun getPigmentBy(document: DocumentSnapshot): Pigment =
 		Pigment(
 			id = document.id,
-			name = document.get(NAME, String::class.java),
-			value = document.get(VALUE, Long::class.java)
+			name = document.get(NAME, String::class.java) ?: "",
+			value = document.get(VALUE, Long::class.java) ?: 4292446245L
 		)
 	
 	private companion object {
