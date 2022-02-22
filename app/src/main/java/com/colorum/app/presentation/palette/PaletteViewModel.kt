@@ -44,10 +44,9 @@ class PaletteViewModel @Inject constructor(
 		putPreferenceUseCase.invoke(
 			key, value
 		).catch {
-			logcat { "😭" }
 			_error.value = it
 		}.collect {
-			logcat { "🐶" }
+			logcat { "Success" }
 		}
 	}
 	
