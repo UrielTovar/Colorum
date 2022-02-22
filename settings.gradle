@@ -52,7 +52,7 @@ dependencyResolutionManagement {
         }
 
         create("androidXNavigation") {
-            version("navigation", "2.4.0")
+            version("navigation", "2.4.1")
             alias("compose").to("androidx.navigation", "navigation-compose").versionRef("navigation")
         }
 

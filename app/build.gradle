@@ -82,6 +82,7 @@ dependencies {
 
     /** Modules */
     implementation(project(":datastore"))
+    implementation(project(":pigments"))
 
     /** Junit */
     testImplementation(jUnit.junit)
