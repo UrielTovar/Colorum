@@ -13,8 +13,8 @@ internal suspend fun <T> DataStore<Preferences>.put(
 	value: T?
 ): Flow<Unit> = callbackFlow {
 	edit { _preference ->
-		value?.let {
-			_preference[key] = it
+		value?.let { _value ->
+			_preference[key] = _value
 			trySend(Unit)
 		} ?: run {
 			close(NullPointerException())
@@ -26,6 +26,6 @@ internal suspend fun <T> DataStore<Preferences>.put(
 internal fun <T> DataStore<Preferences>.get(
 	key: Preferences.Key<T>,
 	defaultValue: T
-): Flow<T> = data.map {
-	it[key] ?: defaultValue
+): Flow<T> = data.map { _preferences ->
+	_preferences[key] ?: defaultValue
 }
