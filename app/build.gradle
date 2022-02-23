@@ -1,17 +1,20 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
+    id "com.google.gms.google-services"
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.tovar.colorum"
+        applicationId "com.colorum.app"
         minSdk 24
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -22,43 +25,70 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         useIR = true
     }
+
     buildFeatures {
         compose true
     }
+
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.5.31'
+        kotlinCompilerExtensionVersion androidXCompose.versions.compose.get()
     }
+
     packagingOptions {
         resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
-    implementation 'androidx.activity:activity-compose:1.4.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    /** AndroidX */
+    implementation(androidX.core)
+    implementation(androidX.appCompat)
+    implementation(androidX.activityCompose)
+    implementation(androidX.datastorePreferences)
+    implementation(androidXNavigation.compose)
+
+    /** Compose */
+    implementation(androidXCompose.bundles.core)
+
+    /** Lifecycle */
+    implementation(androidXLifecycle.runtime)
+    implementation(androidXLifecycle.viewmodel)
+
+    /** Hilt */
+    implementation(daggerHilt.bundles.core)
+    kapt(daggerHilt.compiler)
+
+    /** Google */
+    implementation(google.material)
+    implementation(firebase.firestore)
+
+    /** Square */
+    implementation(square.logcat)
+
+    /** Modules */
+    implementation(project(":datastore"))
+    implementation(project(":pigments"))
+
+    /** Junit */
+    testImplementation(jUnit.junit)
+
+    /** Testing */
+    androidTestImplementation(androidXTesting.bundles.core)
+    androidTestImplementation(androidXCompose.uiTest)
+    debugImplementation(androidXCompose.uiTooling)
 }

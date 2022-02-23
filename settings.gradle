@@ -1,10 +1,120 @@
+rootProject.name = "Colorum"
+include ":app"
+include ":datastore"
+include ":pigments"
+enableFeaturePreview("VERSION_CATALOGS")
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
+
+    versionCatalogs {
+
+        create("androidTools") {
+            version("buildGradle", "7.0.4")
+            alias("buildGradle").to("com.android.tools.build", "gradle").versionRef("buildGradle")
+        }
+
+        create("androidX") {
+            version("core", "1.7.0")
+            alias("core").to("androidx.core", "core-ktx").versionRef("core")
+
+            version("appCompat", "1.4.1")
+            alias("appCompat").to("androidx.appcompat", "appcompat").versionRef("appCompat")
+
+            version("activityCompose", "1.4.0")
+            alias("activityCompose").to("androidx.activity", "activity-compose").versionRef("activityCompose")
+
+            version("preferences", "1.0.0")
+            alias("datastorePreferences").to("androidx.datastore", "datastore-preferences").versionRef("preferences")
+        }
+
+        create("androidXCompose") {
+            version("compose", "1.1.0")
+            alias("ui").to("androidx.compose.ui", "ui").versionRef("compose")
+            alias("material").to("androidx.compose.material", "material").versionRef("compose")
+            alias("toolingPreview").to("androidx.compose.ui", "ui-tooling-preview").versionRef("compose")
+            alias("uiTest").to("androidx.compose.ui", "ui-test-junit4").versionRef("compose")
+            alias("uiTooling").to("androidx.compose.ui", "ui-tooling").versionRef("compose")
+            alias("materialIcons").to("androidx.compose.material", "material-icons-extended").versionRef("compose")
+
+            bundle("core", ["ui", "material", "materialIcons", "toolingPreview"])
+        }
+
+        create("androidXLifecycle") {
+            version("lifecycle", "2.4.0")
+            alias("runtime").to("androidx.lifecycle", "lifecycle-runtime-ktx").versionRef("lifecycle")
+            alias("viewmodel").to("androidx.lifecycle", "lifecycle-viewmodel-compose").versionRef("lifecycle")
+        }
+
+        create("androidXNavigation") {
+            version("navigation", "2.4.1")
+            alias("compose").to("androidx.navigation", "navigation-compose").versionRef("navigation")
+        }
+
+        create("androidXTesting") {
+            version("jUnit", "1.1.3")
+            alias("jUnit").to("androidx.test.ext", "junit").versionRef("jUnit")
+
+            version("espresso", "3.4.0")
+            alias("espresso").to("androidx.test.espresso", "espresso-core").versionRef("espresso")
+
+            bundle("core", ["jUnit", "espresso"])
+        }
+
+        create("coroutines") {
+            version("coroutines", "1.6.0")
+            alias("core").to("org.jetbrains.kotlinx", "kotlinx-coroutines-core").versionRef("coroutines")
+
+            version("playServices", "1.5.0 ")
+            alias("playServices").to("org.jetbrains.kotlinx", "kotlinx-coroutines-play-services").versionRef("playServices")
+        }
+
+        create("daggerHilt") {
+            version("hilt", "2.40")
+            alias("android").to("com.google.dagger", "hilt-android").versionRef("hilt")
+            alias("compiler").to("com.google.dagger", "hilt-compiler").versionRef("hilt")
+            alias("gradle").to("com.google.dagger", "hilt-android-gradle-plugin").versionRef("hilt")
+            alias("core").to("com.google.dagger", "hilt-core").versionRef("hilt")
+
+            version("navigation", "1.0.0")
+            alias("navigation").to("androidx.hilt", "hilt-navigation-compose").versionRef("navigation")
+
+            bundle("core", ["android", "navigation"])
+        }
+
+        create("firebase") {
+            version("firestore", "24.0.0")
+            alias("firestore").to("com.google.firebase", "firebase-firestore-ktx").versionRef("firestore")
+        }
+
+        create("google") {
+            version("material", "1.4.0")
+            alias("material").to("com.google.android.material", "material").versionRef("material")
+
+            version("services", "4.3.10")
+            alias("services").to("com.google.gms", "google-services").versionRef("services")
+        }
+
+        create("jetBrains") {
+            version("kotlin", "1.6.10")
+            alias("kotlinGradlePlugin").to("org.jetbrains.kotlin", "kotlin-gradle-plugin").versionRef("kotlin")
+        }
+
+        create("jUnit") {
+            version("junit", "4.13.2")
+            alias("junit").to("junit", "junit").versionRef("junit")
+        }
+
+        create("square") {
+            version("logcat", "0.1")
+            alias("logcat").to("com.squareup.logcat", "logcat").versionRef("logcat")
+        }
+
+    }
+
 }
-rootProject.name = "Colorum"
-include ':app'

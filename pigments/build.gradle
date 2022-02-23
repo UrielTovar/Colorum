@@ -1,0 +1,54 @@
+plugins {
+    id "com.android.library"
+    id "org.jetbrains.kotlin.android"
+    id "kotlin-kapt"
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 31
+        versionCode 1
+        versionName "0.0.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+}
+
+dependencies {
+    /** Google */
+   implementation(firebase.firestore)
+
+    /** Hilt */
+    implementation(daggerHilt.core)
+    kapt(daggerHilt.compiler)
+
+    /** Jetbrains */
+    implementation(coroutines.core)
+    implementation(coroutines.playServices)
+
+    /** Testing */
+    testImplementation(jUnit.junit)
+    androidTestImplementation(androidXTesting.bundles.core)
+}
