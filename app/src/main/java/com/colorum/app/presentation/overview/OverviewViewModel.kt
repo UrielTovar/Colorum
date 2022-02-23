@@ -29,11 +29,10 @@ class OverviewViewModel @Inject constructor(
 		viewModelScope.launch {
 			getPreferenceUseCase.invoke(key, defaultValue)
 				.catch {
-					logcat { "GetPreference 😭 : $it" }
+					logcat { "Get preference failure" }
 				}
 				.collect {
 					_backgroundColor.value = it as Long
-					logcat { "GetPreference 😁 : $it" }
 				}
 		}
 	
